@@ -1,41 +1,51 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter text here");
+  const [text, setText] = useState("");
   const handleUppercase = () => {
-    // setText(text.toUpperCase());
-    // console.log("Upper case was clicked");
-    // setText("You have clicked uppercase");
     let newText = text.toUpperCase();
     setText(newText);
   };
+  const handleLowercase = () => {
+    let newText = text.toLowerCase();
+    setText(newText);
+  };
   const handeOnchange = (event) => {
-    // console.log("Onchange handler");
     setText(event.target.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setText(text.toUpperCase());
-  // };
-
   return (
-    <div>
-      <div className="mb-3">
-        <label htmlFor="myBox" className="form-label">
-          <h5>{props.heading}</h5>
-        </label>
-        <textarea
-          className="form-control"
-          id="myBox"
-          value={text}
-          rows="8"
-          onChange={handeOnchange}
-        ></textarea>
+    <>
+      <div>
+        <div className="container">
+          <label htmlFor="myBox" className="form-label">
+            <h5>{props.heading}</h5>
+          </label>
+          <textarea
+            className="form-control"
+            id="myBox"
+            value={text}
+            rows="8"
+            onChange={handeOnchange}
+          ></textarea>
+        </div>
+        <button className="btn btn-primary mx-1" onClick={handleUppercase}>
+          Convert To Uppercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleLowercase}>
+          Convert To Lowercase
+        </button>
       </div>
-      <button className="btn btn-primary" onClick={handleUppercase}>
-        Convert To Uppercase
-      </button>
-    </div>
+
+      <div className="container my-3">
+        <h2>Your Text Summary</h2>
+        <p>
+          {text.split(" ").length} words and {text.length} characters
+        </p>
+        <p>{text.split(" ").length * 0.008} minutes to read the text</p>
+        <h3>Preview</h3>
+        <p>{text}</p>
+      </div>
+    </>
   );
 }
