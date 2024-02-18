@@ -2,13 +2,23 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
   const [text, setText] = useState("");
+
   const handleUppercase = () => {
     let newText = text.toUpperCase();
     setText(newText);
   };
+
   const handleLowercase = () => {
     let newText = text.toLowerCase();
     setText(newText);
+  };
+
+  const handleClear = () => {
+    setText("");
+  };
+
+  const handleOriginal = () => {
+    setText(text);
   };
   const handeOnchange = (event) => {
     setText(event.target.value);
@@ -29,11 +39,17 @@ export default function TextForm(props) {
             onChange={handeOnchange}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUppercase}>
+        <button className="btn btn-primary my-3 mx-1" onClick={handleUppercase}>
           Convert To Uppercase
         </button>
         <button className="btn btn-primary mx-1" onClick={handleLowercase}>
           Convert To Lowercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleClear}>
+          Clear Text
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleOriginal}>
+          Original Text
         </button>
       </div>
 
